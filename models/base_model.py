@@ -42,7 +42,7 @@ class BaseModel:
             self.__set_attributes(kwargs)
         else:
             self.id = str(uuid4())
-            self.created_at = datetime.now()
+            self.created_at = datetime.utcnow()
 
     def __set_attributes(self, attr_dict):
         """
@@ -51,7 +51,7 @@ class BaseModel:
         if 'id' not in attr_dict:
             attr_dict['id'] = str(uuid4())
         if 'created_at' not in attr_dict:
-            attr_dict['created_at'] = datetime.now()
+            attr_dict['created_at'] = datetime.utcnow()
         elif not isinstance(attr_dict['created_at'], datetime):
             attr_dict['created_at'] = datetime.strptime(
                 attr_dict['created_at'], '%Y-%m-%d %H:%M:%S.%f')
